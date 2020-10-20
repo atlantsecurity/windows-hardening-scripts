@@ -2,9 +2,9 @@
 ::
 ::
 ::
-::				Windows Server 2019 Hardening Script according to its DISA STIG
+::							Windows Server 2019 Hardening Script according to its DISA STIG
 ::
-::				CAT-1 (HIGH) settings only
+::							CAT-1 (HIGH) settings only
 ::
 ::
 ::
@@ -498,15 +498,6 @@ reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Explorer\Advanced" /v "S
 fsutil behavior set disable8dot3 1
 fsutil behavior set disablelastaccess 0
 ::
-:: Biometrics
-:: Enable anti-spoofing for facial recognition
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Biometrics\FacialFeatures" /v EnhancedAntiSpoofing /t REG_DWORD /d 1 /f
-:: Disable other camera use while screen is locked
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Personalization" /v NoLockScreenCamera /t REG_DWORD /d 1 /f
-:: Prevent Windows app voice activation while locked
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoiceAboveLock /t REG_DWORD /d 2 /f
-:: Prevent Windows app voice activation entirely (be mindful of those with accesibility needs)
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AppPrivacy" /v LetAppsActivateWithVoice /t REG_DWORD /d 2 /f
 ::
 :: Disable weak TLS/SSL ciphers and protocols
 :: ---------------------
@@ -596,25 +587,7 @@ reg add "HKCU\SOFTWARE\Policies\Microsoft\Windows\Installer" /v SafeForScripting
 reg add "HKCU\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main" /v "FormSuggest Passwords" /t REG_SZ /d no /f
 ::
 ::#######################################################################
-:: Enable and Configure Google Chrome Internet Browser Settings
-::#######################################################################
-::
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "AdvancedProtectionAllowed" /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "AllowCrossOriginAuthPrompt" /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "AlwaysOpenPdfExternally" /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "AmbientAuthenticationInPrivateModesEnabled" /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "AudioCaptureAllowed" /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "AudioSandboxEnabled" /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "BlockExternalExtensions" /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "DnsOverHttpsMode" /t REG_SZ /d on /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "SSLVersionMin" /t REG_SZ /d tls1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "ScreenCaptureAllowed" /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "SitePerProcess" /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "TLS13HardeningForLocalAnchorsEnabled" /t REG_DWORD /d 1 /f
-reg add "HKLM\SOFTWARE\Policies\Google\Chrome" /v "VideoCaptureAllowed" /t REG_DWORD /d 1 /f
-::
-::#######################################################################
-:: Windows 10 Privacy Settings
+:: Windows Privacy Settings
 ::#######################################################################
 ::
 :: Set Windows Analytics to limited enhanced if enhanced is enabled
@@ -638,8 +611,6 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\SettingSync" /v DisableSetting
 :: Disable the advertising ID
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\AdvertisingInfo" /v DisabledByGroupPolicy /t REG_DWORD /d 1 /f
 ::
-:: Disable Windows GameDVR (Broadcasting and Recording)
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\GameDVR" /v AllowGameDVR /t REG_DWORD /d 0 /f
 :: Disable Microsoft consumer experience which prevent notifications of suggested applications to install
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\CloudContent" /v DisableWindowsConsumerFeatures /t REG_DWORD /d 1 /f
 reg add "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\ContentDeliveryManager" /v SystemPaneSuggestionsEnabled /t REG_DWORD /d 0 /f
