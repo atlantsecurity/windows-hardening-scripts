@@ -2,9 +2,9 @@
 ::
 ::
 ::
-::							Windows Server 2019 Hardening Script according to its DISA STIG
+::			Windows Server 2019 Hardening Script according to its DISA STIG
 ::
-::							CAT-1 (HIGH) settings only
+::			
 ::
 ::
 ::
