@@ -382,8 +382,8 @@ reg add "HKLM\SYSTEM\CurrentControlSet\services\tcpip6\parameters" /v DisabledCo
 :: Windows Update Settings
 :: Prevent Delivery Optimization from downloading Updates from other computers across the internet
 :: 1 will restrict to LAN only. 0 will disable the feature entirely
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 0 /f
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config\" /v DODownloadMode /t REG_DWORD /d 0 /f
+::reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\DeliveryOptimization" /v DODownloadMode /t REG_DWORD /d 0 /f
+::reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\DeliveryOptimization\Config" /v DODownloadMode /t REG_DWORD /d 0 /f
 :: Set screen saver inactivity timeout to 15 minutes
 ::reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System" /v InactivityTimeoutSecs /t REG_DWORD /d 900 /f
 :: Enable password prompt on sleep resume while plugged in and on battery
@@ -859,7 +859,7 @@ reg add "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cSharePo
 reg add "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cWebmailProfiles" /v "bDisableWebmail" /t REG_DWORD /d 1 /f
 reg add "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cWelcomeScreen" /v "bShowWelcomeScreen" /t REG_DWORD /d 0 /f
 reg add "HKLM\Software\Wow6432Node\Adobe\Acrobat Reader\DC\Installer" /v "DisableMaintenance" /t REG_DWORD /d 1 /f
-
+::
 :: Prevent Edge from running in background
 :: On the new Chromium version of Microsoft Edge, extensions and other services can keep the browser running in the background even after it's closed. 
 :: Although this may not be an issue for most desktop PCs, it could be a problem for laptops and low-end devices as these background processes can 
