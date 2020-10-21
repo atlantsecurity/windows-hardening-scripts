@@ -860,10 +860,10 @@ reg add "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cWebmail
 reg add "HKLM\Software\Policies\Adobe\Acrobat Reader\DC\FeatureLockDown\cWelcomeScreen" /v "bShowWelcomeScreen" /t REG_DWORD /d 0 /f
 reg add "HKLM\Software\Wow6432Node\Adobe\Acrobat Reader\DC\Installer" /v "DisableMaintenance" /t REG_DWORD /d 1 /f
 
-
-:: Prevent Edge from running in background ###
-:: On the new Chromium version of Microsoft Edge, extensions and other services can keep the browser running in the background even after it's closed. ###
-:: Although this may not be an issue for most desktop PCs, it could be a problem for laptops and low-end devices as these background processes can increase battery consumption and memory usage. The background process displays an icon in the system tray and can always be closed from there. ###
+:: Prevent Edge from running in background
+:: On the new Chromium version of Microsoft Edge, extensions and other services can keep the browser running in the background even after it's closed. 
+:: Although this may not be an issue for most desktop PCs, it could be a problem for laptops and low-end devices as these background processes can 
+:: increase battery consumption and memory usage. The background process displays an icon in the system tray and can always be closed from there. 
 :: If you run enable this policy the background mode will be disabled.
 reg add "HKLM\Software\Policies\Microsoft\Edge"
 reg add "HKLM\Software\Policies\Microsoft\Edge"  /v "BackgroundModeEnabled" /t REG_DWORD /d 0 /f
