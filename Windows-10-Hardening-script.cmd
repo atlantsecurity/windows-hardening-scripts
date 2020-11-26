@@ -14,7 +14,8 @@
 ::
 ::###############################################################################################################
 :: Block tools which remotely install services, such as psexec!
-FOR /F "usebackq tokens=2 delims=:" %a IN (`sc.exe sdshow scmanager`) DO  sc.exe sdset scmanager D:(D;;GA;;;NU)%a
+:: Run the command below manually! It does not work in a script. 
+:: FOR /F "usebackq tokens=2 delims=:" %a IN (`sc.exe sdshow scmanager`) DO  sc.exe sdset scmanager D:(D;;GA;;;NU)%a
 :: Block remote commands https://docs.microsoft.com/en-us/windows/win32/com/enabledcom
 REG.EXE ADD HKEY_LOCAL_MACHINE\Software\Microsoft\OLE /v EnableDCOM /t REG_SZ /d N /F
 :: Change file associations to protect against common ransomware and social engineering attacks.
