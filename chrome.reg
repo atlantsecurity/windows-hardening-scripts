@@ -10,7 +10,6 @@ Windows Registry Editor Version 5.00
 "DefaultSearchProviderEnabled"=dword:01000000
 "AllowOutdatedPlugins"=dword:00000000
 "BackgroundModeEnabled"=dword:00000000
-"SyncDisabled"=dword:01000000
 "CloudPrintProxyEnabled"=dword:00000000
 "MetricsReportingEnabled"=dword:00000000
 "SearchSuggestEnabled"=dword:00000000
