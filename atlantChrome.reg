@@ -36,8 +36,10 @@ Windows Registry Editor Version 5.00
 "BrowserGuestModeEnabled"=dword:00000000
 "ImportAutofillFormData"=dword:00000000
 
-
 [HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallWhitelist]
+"1"="cjpalhdlnbpafiamejdnhcphjbkeiagm"
+
+[HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\ExtensionInstallForcelist]
 "1"="cjpalhdlnbpafiamejdnhcphjbkeiagm"
 
 
