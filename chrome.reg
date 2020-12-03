@@ -17,7 +17,6 @@ Windows Registry Editor Version 5.00
 "ImportSavedPasswords"=dword:00000000
 "IncognitoModeAvailability"=dword:01000000
 "EnableOnlineRevocationChecks"=dword:01000000
-"SafeBrowsingEnabled"=dword:01000000
 "SavingBrowserHistoryDisabled"=dword:00000000
 "DefaultPluginsSetting"=dword:03000000
 "AllowDeletingBrowserHistory"=dword:00000000
@@ -48,3 +47,6 @@ Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\Software\Policies\Google\Update]
 "AutoUpdateCheckPeriodMinutes"=dword:60270000
+
+[HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome\Recommended]
+"SafeBrowsingProtectionLevel"=dword:00000002
