@@ -1,6 +1,7 @@
 Windows Registry Editor Version 5.00
 
 [HKEY_LOCAL_MACHINE\Software\Policies\Google\Chrome]
+"AdvancedProtectionAllowed"=dword:00000001
 "RemoteAccessHostFirewallTraversal"=dword:00000000
 "DefaultPopupsSetting"=dword:02000000
 "DefaultGeolocationSetting"=dword:02000000
