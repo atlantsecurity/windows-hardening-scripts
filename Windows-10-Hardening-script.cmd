@@ -64,7 +64,7 @@ reg delete "HKLM\SOFTWARE\Classes\.devicemanifest-ms" /f
 assoc .rdg=txtfile
 :: Mitigate ClickOnce .application and .deploy files vector
 :: https://blog.redxorblue.com/2020/07/one-click-to-compromise-fun-with.html
-assoc .application=txtfile
+:: assoc .application=txtfile
 assoc .deploy=txtfile
 :: TODO mitigate ClickOnce .appref-ms files vector
 :: https://www.blackhat.com/us-19/briefings/schedule/#clickonce-and-youre-in---when-appref-ms-abuse-is-operating-as-intended-15375
