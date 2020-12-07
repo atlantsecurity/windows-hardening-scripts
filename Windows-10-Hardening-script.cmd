@@ -17,7 +17,7 @@
 :: Run the command below manually! It does not work in a script. 
 :: FOR /F "usebackq tokens=2 delims=:" %a IN (`sc.exe sdshow scmanager`) DO  sc.exe sdset scmanager D:(D;;GA;;;NU)%a
 :: Block remote commands https://docs.microsoft.com/en-us/windows/win32/com/enabledcom
-REG.EXE ADD HKEY_LOCAL_MACHINE\Software\Microsoft\OLE /v EnableDCOM /t REG_SZ /d N /F
+reg add HKEY_LOCAL_MACHINE\Software\Microsoft\OLE /v EnableDCOM /t REG_SZ /d N /F
 :: Change file associations to protect against common ransomware and social engineering attacks.
 :: Note that if you legitimately use these extensions, like .bat, you will now need to execute them manually from cmd or powershell
 :: Alternatively, you can right-click on them and hit 'Run as Administrator' but ensure it's a script you want to run :) 
