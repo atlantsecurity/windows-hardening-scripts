@@ -726,20 +726,6 @@ Auditpol /set /subcategory:"Filtering Platform Policy Change" /success:disable /
 Auditpol /set /subcategory:"Security State Change" /success:enable /failure:enable
 Auditpol /set /subcategory:"Security System Extension" /success:enable /failure:enable
 Auditpol /set /subcategory:"System Integrity" /success:enable /failure:enable
-::#######################################################################
-:: Force Update Flash
-:: ---------------------
-::%WINDIR%\system32\macromed\flash\FlashUtil_ActiveX.exe -update activex
-::%WINDIR%\system32\macromed\flash\FlashUtil_Plugin.exe -update plugin
-::
-::#######################################################################
-:: Uninstall dangerous apps with browser extentions
-:: ---------------------
-:: wmic /interactive:off product where "name like 'Adobe Air%' and version like'%'" call uninstall
-:: wmic /interactive:off product where "name like 'Adobe Flash%' and version like'%'" call uninstall
-:: wmic /interactive:off product where "name like 'Java%' and version like'%'" call uninstall
-::
-::#######################################################################
 :: Uninstall pups
 :: ---------------------
 :: wmic /interactive:off product where "name like 'Ask Part%' and version like'%'" call uninstall
