@@ -50,8 +50,8 @@ assoc .wcx=txtfile
 :: https://posts.specterops.io/the-tale-of-settingcontent-ms-files-f1ea253e4d39
 :: Changing back:
 :: reg add "HKCR\SettingContent\Shell\Open\Command" /v DelegateExecute /t REG_SZ /d "{0c194cb2-2959-4d14-8964-37fd3e48c32d}" /f
-reg delete "HKCR\SettingContent\Shell\Open\Command" /v DelegateExecute /f
-reg add "HKCR\SettingContent\Shell\Open\Command" /v DelegateExecute /t REG_SZ /d "" /f
+:: reg delete "HKCR\SettingContent\Shell\Open\Command" /v DelegateExecute /f
+:: reg add "HKCR\SettingContent\Shell\Open\Command" /v DelegateExecute /t REG_SZ /d "" /f
 :: https://rinseandrepeatanalysis.blogspot.com/2018/09/dde-downloaders-excel-abuse-and.html
 assoc .slk=txtfile
 assoc .iqy=txtfile
