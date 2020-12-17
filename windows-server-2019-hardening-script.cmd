@@ -490,9 +490,11 @@ netsh advfirewall set currentprofile logging filename %systemroot%\system32\LogF
 netsh advfirewall set currentprofile logging maxfilesize 4096
 netsh advfirewall set currentprofile logging droppedconnections enable
 ::
-:: Block all inbound connections on Public profile
+:: Block all inbound connections on Public profile - enable this only when you are sure you have physical access. 
+:: To restore the consequences of the next command, run the one after it. This will disable RDP and Share and all other inbound connections to this computer. 
 :: ---------------------
-netsh advfirewall set publicprofile firewallpolicy blockinboundalways,allowoutbound
+:: netsh advfirewall set publicprofile firewallpolicy blockinboundalways,allowoutbound
+:: netsh advfirewall set publicprofile firewallpolicy notconfigured,notconfigured
 ::
 ::Disable AutoRun
 :: ---------------------
