@@ -521,8 +521,15 @@ netsh advfirewall set currentprofile logging droppedconnections enable
 :: Block all inbound connections on Public profile - enable this only when you are sure you have physical access. 
 :: To restore the consequences of the next command, run the one after it. This will disable RDP and Share and all other inbound connections to this computer. 
 :: ---------------------
+:: !!!!!!!!!!!!!!!!!!!!! WARNING !!!!!!!!!!!!!!!!!!!!!
+:: The following command enables RDP before you block all other ports - use the same logic for any other ports you might need open before you block inbound connections.
+:: netsh advfirewall firewall add rule name="Open Remote Desktop" protocol=TCP dir=in localport=3389 action=allow
+:: netsh advfirewall set publicprofile firewallpolicy blockinbound,allowoutbound
+:: The following command ignores the RDP or any other rule above and blocks ALL inbound connections. Use this when you connect to the remote machine
+:: for troubleshooting using an agent or don't connect remotely at all, as you will not be able to use RDP or other means of remote administration after this. 
 :: netsh advfirewall set publicprofile firewallpolicy blockinboundalways,allowoutbound
-:: netsh advfirewall set publicprofile firewallpolicy notconfigured,notconfigured
+:: 
+:: the two commands work extremely well and it is recommended that you edit this script according to your needs and the needs of specific users and departments in your company. 
 ::
 ::Disable AutoRun
 :: ---------------------
