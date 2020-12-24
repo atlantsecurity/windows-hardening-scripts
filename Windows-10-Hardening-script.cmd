@@ -859,3 +859,16 @@ reg add "HKLM\Software\Wow6432Node\Adobe\Acrobat Reader\DC\Installer" /v "Disabl
 :: If you run enable this policy the background mode will be disabled.
 reg add "HKLM\Software\Policies\Microsoft\Edge"
 reg add "HKLM\Software\Policies\Microsoft\Edge"  /v "BackgroundModeEnabled" /t REG_DWORD /d 0 /f
+::
+:: EDGE HARDENING ::
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "SitePerProcess" /t REG_DWORD /d "16777216" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "SSLVersionMin" /t REG_SZ /d "tls1.2^@" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "DefaultPluginsSetting" /t REG_DWORD /d "33554432" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "AuthSchemes" /t REG_SZ /d "ntlm,negotiate^@" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "NativeMessagingUserLevelHosts" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "SmartScreenEnabled" /t REG_DWORD /d "16777216" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "PreventSmartScreenPromptOverride" /t REG_DWORD /d "16777216" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "PreventSmartScreenPromptOverrideForFiles" /t REG_DWORD /d "16777216" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "SSLErrorOverrideAllowed" /t REG_DWORD /d "0" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "SmartScreenPuaEnabled" /t REG_DWORD /d "16777216" /f
+Reg.exe add "HKLM\Software\Policies\Microsoft\Edge" /v "EnableSha1ForLocalAnchors" /t REG_DWORD /d "0" /f
