@@ -1,6 +1,7 @@
 ::###############################################################################################################
 ::
 ::		Windows 10 Security Hardening Script - includes Chrome, Adobe Reader, Edge security settings. 
+::    Read the comments and uncomment or comment relevant sections to make best use of it. 
 ::
 ::###############################################################################################################
 :: Credits and More info: https://gist.github.com/mackwage/08604751462126599d7e52f233490efe
