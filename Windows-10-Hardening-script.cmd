@@ -40,6 +40,7 @@ assoc .wsh=txtfile
 assoc .sct=txtfile
 assoc .url=txtfile
 assoc .ps1=txtfile
+assoc .iso=txtfile
 :: https://seclists.org/fulldisclosure/2019/Mar/27
 assoc .reg=txtfile
 :: https://www.trustwave.com/Resources/SpiderLabs-Blog/Firework--Leveraging-Microsoft-Workspaces-in-a-Penetration-Test/
