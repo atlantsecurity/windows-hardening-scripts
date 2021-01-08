@@ -14,17 +14,22 @@
 ::                        https://gist.github.com/ricardojba/ecdfe30dadbdab6c514a530bc5d51ef6
 ::
 ::###############################################################################################################
+::###############################################################################################################
+:: INSTRUCTIONS
+:: Find the "EDIT" lines and change them according to your requirements and organization. Some lines
+:: are not appropriate for large companies using Active Directory infrastructure, others are fine for small organizations, 
+:: others are fine for individual users. At the start of tricky lines, I've added guidelines. 
+:: It is a good idea to create a System Restore point before you run the script - as there are more than 920 lines in it,
+:: finding out which line broke your machine is going to be trickly. You can also run the script in sequences manually the 
+:: first few times, reboot, test your software and connectivity, proceed with the next sequence - this helps with troubleshooting.
+::###############################################################################################################
 :: Block tools which remotely install services, such as psexec!
-:: Run the command below manually! It does not work in a script. 
+:: EDIT: Run the command below manually! It does not work in a script. 
 :: FOR /F "usebackq tokens=2 delims=:" %a IN (`sc.exe sdshow scmanager`) DO  sc.exe sdset scmanager D:(D;;GA;;;NU)%a
 :: Block remote commands https://docs.microsoft.com/en-us/windows/win32/com/enabledcom
 reg add HKEY_LOCAL_MACHINE\Software\Microsoft\OLE /v EnableDCOM /t REG_SZ /d N /F
-:: Change file associations to protect against common ransomware and social engineering attacks.
-:: Note that if you legitimately use these extensions, like .bat, you will now need to execute them manually from cmd or powershell
-:: Alternatively, you can right-click on them and hit 'Run as Administrator' but ensure it's a script you want to run :) 
-:: ---------------------
-:: Changing back example (x64):
-:: ftype htafile=C:\Windows\SysWOW64\mshta.exe "%1" {1E460BD7-F1C3-4B2E-88BF-4E770A288AF5}%U{1E460BD7-F1C3-4B2E-88BF-4E770A288AF5} %*
+:: Change file associations to protect against common ransomware and social engineering attacks. These are for regular users. Technicallly savvy 
+:: users know how to mount an iso or run a script even if they are associated with notepad. 
 assoc .bat=txtfile
 assoc .cmd=txtfile
 assoc .chm=txtfile
@@ -156,7 +161,10 @@ powershell.exe Add-MpPreference -AttackSurfaceReductionRules_Ids 9E6C4E1F-7D60-4
 :: Block untrusted and unsigned processes that run from USB
 powershell.exe Add-MpPreference -AttackSurfaceReductionRules_Ids B2B3F03D-6A65-4F7B-A9C7-1C7EF74A9BA4 -AttackSurfaceReductionRules_Actions Enabled
 ::
-:: Enable Controlled Folder
+:: EDIT: Enable Controlled Folder Access - enable with caution. Application installations may be blocked - admin elevation 
+:: required to approve an app install through CFA. This is an extremely valuable setting but only for machines which are already fully configured. 
+:: In environments where you can whitelist CFA apps through Group Policy your life will be easier. 
+:: Read and follow this guide before enabling: https://www.prajwaldesai.com/enable-controlled-folder-access-using-group-policy/
 powershell.exe Set-MpPreference -EnableControlledFolderAccess Enabled
 ::
 :: Enable Cloud functionality of Windows Defender
