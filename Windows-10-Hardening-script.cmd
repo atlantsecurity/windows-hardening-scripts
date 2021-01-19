@@ -22,6 +22,14 @@
 :: It is a good idea to create a System Restore point before you run the script - as there are more than 920 lines in it,
 :: finding out which line broke your machine is going to be trickly. You can also run the script in sequences manually the 
 :: first few times, reboot, test your software and connectivity, proceed with the next sequence - this helps with troubleshooting.
+:: HOW TO RUN THE SCRIPT
+:: 1. In Settings, search for Restore, then choose Create a restore point, then in System Protection, make sure it is On and has at least 6% of the drive.  
+:: Create a Restore point, name it "Prior Security Hardening" 
+:: 2. Go to https://raw.githubusercontent.com/atlantsecurity/windows-hardening-scripts/main/Windows-10-Hardening-script.cmd and download the cmd script to Downloads. 
+:: It will download it as .txt - go to View in folder options, enable file extensions, change the filename to .cmd.  
+:: 3. Open Powershell as Administrator, then type cd ~, then type cd .\Downloads\, type ls, type cmd 
+:: 4. Type "Windows-10-Hardening-script.cmd"
+:: 5. If you experience problems and need to roll back, roll back using the system restore point you created. 
 ::###############################################################################################################
 :: Block tools which remotely install services, such as psexec!
 :: EDIT: Run the command below manually! It does not work in a script. 
