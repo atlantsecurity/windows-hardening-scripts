@@ -24,6 +24,7 @@
 :: first few times, reboot, test your software and connectivity, proceed with the next sequence - this helps with troubleshooting.
 :: HOW TO RUN THE SCRIPT
 :: The command below creates the restore point, you can do it manually, too. 
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v SystemRestorePointCreationFrequency /t REG_DWORD /d 20 /f
 :: powershell.exe -ExecutionPolicy Bypass -NoExit -Command "Checkpoint-Computer -Description 'BeforeSecurityHardening' -RestorePointType 'MODIFY_SETTINGS'"
 :: 1. In Settings, search for Restore, then choose Create a restore point, then in System Protection, make sure it is On and has at least 6% of the drive.  
 :: Create a Restore point, name it "Prior Security Hardening" 
