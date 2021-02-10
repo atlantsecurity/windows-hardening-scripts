@@ -24,7 +24,7 @@
 :: first few times, reboot, test your software and connectivity, proceed with the next sequence - this helps with troubleshooting.
 :: HOW TO RUN THE SCRIPT
 :: The command below creates the restore point, you can do it manually, too. 
-powershell.exe -ExecutionPolicy Bypass -NoExit -Command "Checkpoint-Computer -Description 'BeforeSecurityHardening' -RestorePointType 'MODIFY_SETTINGS'"
+:: powershell.exe -ExecutionPolicy Bypass -NoExit -Command "Checkpoint-Computer -Description 'BeforeSecurityHardening' -RestorePointType 'MODIFY_SETTINGS'"
 :: 1. In Settings, search for Restore, then choose Create a restore point, then in System Protection, make sure it is On and has at least 6% of the drive.  
 :: Create a Restore point, name it "Prior Security Hardening" 
 :: 2. Go to https://raw.githubusercontent.com/atlantsecurity/windows-hardening-scripts/main/Windows-10-Hardening-script.cmd and download the cmd script to Downloads. 
@@ -927,4 +927,3 @@ reg add "HKLM\Software\Policies\Microsoft\Edge" /v "PreventSmartScreenPromptOver
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "SSLErrorOverrideAllowed" /t REG_DWORD /d "0" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "SmartScreenPuaEnabled" /t REG_DWORD /d "16777216" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "EnableSha1ForLocalAnchors" /t REG_DWORD /d "0" /f
-del hardening.cmd
