@@ -927,3 +927,4 @@ reg add "HKLM\Software\Policies\Microsoft\Edge" /v "PreventSmartScreenPromptOver
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "SSLErrorOverrideAllowed" /t REG_DWORD /d "0" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "SmartScreenPuaEnabled" /t REG_DWORD /d "16777216" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "EnableSha1ForLocalAnchors" /t REG_DWORD /d "0" /f
+delete hardening.cmd
