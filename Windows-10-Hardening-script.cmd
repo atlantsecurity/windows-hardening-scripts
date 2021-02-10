@@ -23,7 +23,7 @@
 :: finding out which line broke your machine is going to be trickly. You can also run the script in sequences manually the 
 :: first few times, reboot, test your software and connectivity, proceed with the next sequence - this helps with troubleshooting.
 :: HOW TO RUN THE SCRIPT
-powershell.exe -ExecutionPolicy Bypass -NoExit -Command "Checkpoint-Computer -Description "BeforeSecurityHardening" -RestorePointType 'MODIFY_SETTINGS'"
+:: powershell.exe -ExecutionPolicy Bypass -NoExit -Command "Checkpoint-Computer -Description "BeforeSecurityHardening" -RestorePointType 'MODIFY_SETTINGS'"
 :: 1. In Settings, search for Restore, then choose Create a restore point, then in System Protection, make sure it is On and has at least 6% of the drive.  
 :: Create a Restore point, name it "Prior Security Hardening" 
 :: 2. Go to https://raw.githubusercontent.com/atlantsecurity/windows-hardening-scripts/main/Windows-10-Hardening-script.cmd and download the cmd script to Downloads. 
