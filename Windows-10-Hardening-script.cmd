@@ -853,6 +853,7 @@ powershell.exe -command "Get-AppxPackage *EclipseManager* -AllUsers | Remove-App
 powershell.exe -command "Get-AppxPackage *SpotifyAB.SpotifyMusic* -AllUsers | Remove-AppxPackage"
 powershell.exe -command "Get-AppxPackage *king.com.* -AllUsers | Remove-AppxPackage"
 powershell.exe -command "Get-AppxPackage *Microsoft.NET.Native.Framework.1.* -AllUsers | Remove-AppxPackage"
+powershell.exe -command "Get-AppxPackage *netflix* | Remove-AppxPackage"
 :: Removed Provisioned Apps
 :: This will prevent these apps from being reinstalled on new user first logon
 :: Obviously I manually chose this list. If you truly want to nuke all the provisioned apps, you can use the below commented command in PowerShell
