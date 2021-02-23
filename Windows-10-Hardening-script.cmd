@@ -24,7 +24,7 @@
 :: first few times, reboot, test your software and connectivity, proceed with the next sequence - this helps with troubleshooting.
 :: HOW TO RUN THE SCRIPT
 :: The command below creates the restore point, you can do it manually, too. 
-powershell.exe enable-computerrestore -drive "c:\"
+powershell.exe enable-computerrestore -drive c:\
 powershell.exe vssadmin resize shadowstorage /on=c: /for=c: /maxsize=5%
 :: checkpoint-computer -description "beforehardening"
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v SystemRestorePointCreationFrequency /t REG_DWORD /d 20 /f
