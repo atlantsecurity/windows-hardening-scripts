@@ -874,7 +874,7 @@ reg add "HKLM\Software\Policies\Microsoft\Edge" /v "PreventSmartScreenPromptOver
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "PreventSmartScreenPromptOverrideForFiles" /t REG_DWORD /d "0x00000001" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "SSLErrorOverrideAllowed" /t REG_DWORD /d "0" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge" /v "SmartScreenPuaEnabled" /t REG_DWORD /d "0x00000001" /f
-reg add "HKLM\Software\Policies\Microsoft\Edge" /v "EnableSha1ForLocalAnchors" /t REG_DWORD /d "0" /f
+reg add "HKLM\Software\Policies\Microsoft\Edge" /v "AllowDeletingBrowserHistory" /t REG_DWORD /d "0x00000000" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge\ExtensionInstallAllowlist\1" /t REG_SZ /d "odfafepnkmbhccpbejgmiehpchacaeak" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge\ExtensionInstallForcelist\1" /t REG_SZ /d "odfafepnkmbhccpbejgmiehpchacaeak" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge\ExtensionInstallAllowlist\2" /t REG_SZ /d "hokifickgkhplphjiodbggjmoafhignh" /f
