@@ -862,7 +862,7 @@ reg add "HKLM\Software\Wow6432Node\Adobe\Acrobat Reader\DC\Installer" /v "Disabl
 :: Although this may not be an issue for most desktop PCs, it could be a problem for laptops and low-end devices as these background processes can 
 :: increase battery consumption and memory usage. The background process displays an icon in the system tray and can always be closed from there. 
 :: If you run enable this policy the background mode will be disabled.
-reg add "HKLM\Software\Policies\Microsoft\Edge"
+reg add "HKLM\Software\Policies\Microsoft\Edge" /f
 reg add "HKLM\Software\Policies\Microsoft\Edge"  /v "BackgroundModeEnabled" /t REG_DWORD /d 0 /f
 ::
 :: EDGE HARDENING ::
