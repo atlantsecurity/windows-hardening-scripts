@@ -1,6 +1,7 @@
 ::###############################################################################################################
 ::
-::		Windows 10 Security Hardening Script - includes Chrome, Adobe Reader, Edge security settings. 
+::		Atlant Security (https://atlantsecurity.com)'s Windows 10 Security Hardening Script - 
+::    includes Microsoft 365, Office, Chrome, Adobe Reader, Edge security settings. 
 ::    Read the comments and uncomment or comment relevant sections to make best use of it. 
 ::
 ::###############################################################################################################
