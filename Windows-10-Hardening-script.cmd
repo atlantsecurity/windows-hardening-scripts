@@ -3,6 +3,7 @@
 ::		Atlant Security (https://atlantsecurity.com)'s Windows 10 Security Hardening Script - 
 ::    includes Microsoft 365, Office, Chrome, Adobe Reader, Edge security settings. 
 ::    Read the comments and uncomment or comment relevant sections to make best use of it. 
+::    License: Free to use for personal use. For commercial use, contact Atlant security. 
 ::
 ::###############################################################################################################
 :: Credits and More info: https://gist.github.com/mackwage/08604751462126599d7e52f233490efe
