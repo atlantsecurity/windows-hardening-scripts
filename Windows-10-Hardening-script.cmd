@@ -182,6 +182,7 @@ powershell.exe Add-MpPreference -AttackSurfaceReductionRules_Ids B2B3F03D-6A65-4
 :: In environments where you can whitelist CFA apps through Group Policy your life will be easier. 
 :: Read and follow this guide before enabling: https://www.prajwaldesai.com/enable-controlled-folder-access-using-group-policy/
 powershell.exe Set-MpPreference -EnableControlledFolderAccess Enabled
+:: to add exclusion folders or apps, use the following command: powershell.exe Add-MpPreference -ExclusionPath 'C:\Program Files\App\app.exe' 
 ::
 :: Enable Cloud functionality of Windows Defender
 powershell.exe Set-MpPreference -MAPSReporting Advanced
