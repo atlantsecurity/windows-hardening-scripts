@@ -92,7 +92,8 @@ assoc .deploy=txtfile
 :: TODO mitigate ClickOnce .appref-ms files vector
 :: https://www.blackhat.com/us-19/briefings/schedule/#clickonce-and-youre-in---when-appref-ms-abuse-is-operating-as-intended-15375
 :: reg delete "HKLM\SOFTWARE\Classes\.appref-ms" /f
-::
+:: Prevent Local windows wireless exploitation: the Airstrike attack https://shenaniganslabs.io/2021/04/13/Airstrike.html
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\System" /v DontDisplayNetworkSelectionUI /t REG_DWORD /d 1 /f
 :: Workarround for CoronaBlue/SMBGhost Worm exploiting CVE-2020-0796
 :: https://portal.msrc.microsoft.com/en-US/security-guidance/advisory/ADV200005
 :: Active Directory Administrative Templates
