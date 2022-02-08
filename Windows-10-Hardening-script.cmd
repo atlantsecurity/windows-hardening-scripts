@@ -287,6 +287,15 @@ reg add "HKCU\Software\Microsoft\Office\16.0\Word\Options\WordMail" /v DontUpdat
 :: Disable DNS Multicast, NTLM, SMBv1, NetBIOS over TCP/IP, PowerShellV2, AutoRun, 8.3 names, Last Access timestamp and weak TLS/SSL ciphers and protocols
 :: Enables UAC, SMB/LDAP Signing, Show hidden files
 :: ---------------------
+:: ##############################################################################################################
+:: VSSADMIN RENAME
+:: this one DISABLES vssadmin - after generating a volume shadow copy with it. 
+:: Crypto malware uses it to delete volume shadow copies of documents - you can at least restore old versions if you have an old volume shadow copy. 
+:: you can also generate volume shadow copies in other ways. 
+powershell.exe Invoke-WebRequest -Uri http://download.bleepingcomputer.com/bats/renvss.bat -OutFile renvss.bat
+renvss.bat
+del renvss.bat
+::
 :: Disable storing password in memory in cleartext
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
 :: Prevent Kerberos from using DES or RC4
