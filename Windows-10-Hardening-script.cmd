@@ -292,6 +292,10 @@ reg add "HKCU\Software\Microsoft\Office\16.0\Word\Options\WordMail" /v DontUpdat
 :: this one DISABLES vssadmin - after generating a volume shadow copy with it. 
 :: Crypto malware uses it to delete volume shadow copies of documents - you can at least restore old versions if you have an old volume shadow copy. 
 :: you can also generate volume shadow copies in other ways. 
+:: read more about running manual backups using WMIC here:
+:: https://www.bleepingcomputer.com/news/security/why-everyone-should-disable-vssadminexe-now/
+:: or just use 
+:: Wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "%DATE%", 100, 7
 powershell.exe Invoke-WebRequest -Uri http://download.bleepingcomputer.com/bats/renvss.bat -OutFile renvss.bat
 renvss.bat
 del renvss.bat
