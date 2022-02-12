@@ -27,7 +27,7 @@
 :: HOW TO RUN THE SCRIPT
 :: The command below creates the restore point, you can do it manually, too. 
 powershell.exe enable-computerrestore -drive c:\
-powershell.exe vssadmin resize shadowstorage /on=c: /for=c: /maxsize=5000MB
+powershell.exe admin resize shadowstorage /on=c: /for=c: /maxsize=5000MB
 :: checkpoint-computer -description "beforehardening"
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v SystemRestorePointCreationFrequency /t REG_DWORD /d 20 /f
 powershell.exe -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'BeforeSecurityHardening' -RestorePointType 'MODIFY_SETTINGS'"
@@ -288,18 +288,6 @@ reg add "HKCU\Software\Microsoft\Office\16.0\Word\Options\WordMail" /v DontUpdat
 :: Enables UAC, SMB/LDAP Signing, Show hidden files
 :: ---------------------
 :: ##############################################################################################################
-:: VSSADMIN RENAME
-:: this one DISABLES vssadmin - after generating a volume shadow copy with it. 
-:: Crypto malware uses it to delete volume shadow copies of documents - you can at least restore old versions if you have an old volume shadow copy. 
-:: you can also generate volume shadow copies in other ways. 
-:: read more about running manual backups using WMIC here:
-:: https://www.bleepingcomputer.com/news/security/why-everyone-should-disable-vssadminexe-now/
-:: or just use 
-:: Wmic.exe /Namespace:\\root\default Path SystemRestore Call CreateRestorePoint "%DATE%", 100, 7
-powershell.exe Invoke-WebRequest -Uri http://download.bleepingcomputer.com/bats/renvss.bat -OutFile renvss.bat
-renvss.bat
-del renvss.bat
-::
 :: Disable storing password in memory in cleartext
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
 :: Prevent Kerberos from using DES or RC4
