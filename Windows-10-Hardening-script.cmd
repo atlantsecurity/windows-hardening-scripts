@@ -31,11 +31,11 @@ powershell.exe admin resize shadowstorage /on=c: /for=c: /maxsize=5000MB
 :: checkpoint-computer -description "beforehardening"
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v SystemRestorePointCreationFrequency /t REG_DWORD /d 20 /f
 powershell.exe -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'BeforeSecurityHardening' -RestorePointType 'MODIFY_SETTINGS'"
-:: 1. In Settings, search for Restore, then choose Create a restore point, then in System Protection, make sure it is On and has at least 6% of the drive.  
-:: Create a Restore point, name it "Prior Security Hardening" 
-:: 2. Go to https://raw.githubusercontent.com/atlantsecurity/windows-hardening-scripts/main/Windows-10-Hardening-script.cmd and download the cmd script to Downloads. 
-:: It will download it as .txt - go to View in folder options, enable file extensions, change the filename to .cmd.  
-:: 3. Open Powershell as Administrator, then type cd ~, then type cd .\Downloads\, type ls, type cmd 
+:: 1. In Settings, search for Restore, then choose Create a restore point, then in System Protection, make sure it is On and has at least 6% of the drive.  
+:: Create a Restore point, name it "Prior Security Hardening" 
+:: 2. Go to https://raw.githubusercontent.com/atlantsecurity/windows-hardening-scripts/main/Windows-10-Hardening-script.cmd and download the cmd script to Downloads. 
+:: It will download it as .txt - go to View in folder options, enable file extensions, change the filename to .cmd.  
+:: 3. Open Powershell as Administrator, then type cd ~, then type cd .\Downloads\, type ls, type cmd 
 :: 4. Type "Windows-10-Hardening-script.cmd"
 :: 5. If you experience problems and need to roll back, roll back using the system restore point you created. 
 ::###############################################################################################################
@@ -301,6 +301,12 @@ reg add "HKCU\SOFTWARE\Microsoft\Office\Common\Security" /v DisableAllActiveX /t
 :: Enables UAC, SMB/LDAP Signing, Show hidden files
 :: ---------------------
 :: ##############################################################################################################
+:: Enforce the Administrator role for adding printer drivers. This is a frequent exploit attack vector. 
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Print\Providers\LanMan Print Services\Servers" /v AddPrinterDrivers /t REG_DWORD /d 1 /f
+:: Enforces the Administrator role for removing and formatting removable NTFS drives
+:: reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\CurrentVersion\Winlogon" /v AllocateDASD /t REG_DWORD /d 0 /f
+:: Forces Installer to NOT use elevated privileges during installs by default, which prevents escalation of privileges vulnerabilities and attacks
+reg reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer" /v AlwaysInstallElevated /t REG_DWORD /d 0 /f
 :: Disable storing password in memory in cleartext
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
 :: Prevent Kerberos from using DES or RC4
