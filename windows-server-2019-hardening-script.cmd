@@ -392,8 +392,8 @@ wmic /interactive:off nicconfig where TcpipNetbiosOptions=1 call SetTcpipNetbios
 powershell.exe Disable-WindowsOptionalFeature -Online -FeatureName smb1protocol
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\mrxsmb10" /v Start /t REG_DWORD /d 4 /f
 :: Disable Powershellv2
-powershell.exe Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2
-powershell.exe Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2Root
+::powershell.exe Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2
+::powershell.exe Disable-WindowsOptionalFeature -Online -FeatureName MicrosoftWindowsPowerShellV2Root
 ::
 ::#######################################################################
 :: Harden lsass to help protect against credential dumping (Mimikatz)
