@@ -139,6 +139,30 @@ reg add "HKCU\SOFTWARE\Microsoft\Windows Defender" /v PassiveMode /t REG_DWORD /
 reg add "HKCU\SYSTEM\CurrentControlSet\Policies\EarlyLaunch" /v DriverLoadPolicy /t REG_DWORD /d 3 /f
 ::
 :: https://twitter.com/duff22b/status/1280166329660497920
+::
+::Modern AttackSurface Rules
+:: Block executable content from email client and webmail
+PowerShell -Command "Add-MpPreference -AttackSurfaceReductionRules_Ids BE9BA2D9-53EA-4CDC-84E5-9B1EEEE46550 -AttackSurfaceReductionRules_Actions Enabled"
+:: Block Office applications from creating child processes
+PowerShell -Command "Add-MpPreference -AttackSurfaceReductionRules_Ids D4F940AB-401B-4EFC-AADC-AD5F3C50688A -AttackSurfaceReductionRules_Actions Enabled"
+:: Block all Office applications from creating executable content
+PowerShell -Command "Add-MpPreference -AttackSurfaceReductionRules_Ids 3B576869-A4EC-4529-8536-B80A7769E899 -AttackSurfaceReductionRules_Actions Enabled"
+:: Block JavaScript or VBScript from launching downloaded executable content
+PowerShell -Command "Add-MpPreference -AttackSurfaceReductionRules_Ids D3E037E1-3EB8-44C8-A917-57927947596D -AttackSurfaceReductionRules_Actions Enabled"
+::
+:: Set Cloud Block Level to High for aggressive sample submission
+PowerShell -Command "Set-MpPreference -CloudBlockLevel 4"
+:: Extend cloud check time to 50 seconds
+PowerShell -Command "Set-MpPreference -CloudExtendedTimeout 50"
+:: Enable PUA (Potentially Unwanted Application) protection
+PowerShell -Command "Set-MpPreference -PUAProtection 1"
+::
+:: Set Public profile as default (more restrictive) and disable network discovery
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\DefaultMediaCost" /v Ethernet /t REG_DWORD /d 2 /f
+reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\DefaultMediaCost" /v WiFi /t REG_DWORD /d 2 /f
+:: Block LLMNR (Link-Local Multicast Name Resolution) to prevent spoofing
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" /v EnableMulticast /t REG_DWORD /d 0 /f
+::
 :: Stop some of the most common SMB based lateral movement techniques dead in their tracks
 powershell.exe Set-MpPreference -AttackSurfaceReductionRules_Ids D1E49AAC-8F56-4280-B9BA-993A6D -AttackSurfaceReductionRules_Actions Enabled
 ::
@@ -310,7 +334,6 @@ reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Installer" /v AlwaysInstallEle
 :: Disable storing password in memory in cleartext
 reg add HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\WDigest /v UseLogonCredential /t REG_DWORD /d 0 /f
 :: Prevent Kerberos from using DES or RC4
-reg add "HKLM\SOFTWARE\Microsoft\Windows\CurrentVersion\Policies\System\Kerberos\Parameters" /v SupportedEncryptionTypes /t REG_DWORD /d 2147483640 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" /v EnableMulticast /t REG_DWORD /d 0 /f
 reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows NT\DNSClient" /v DisableSmartNameResolution /t REG_DWORD /d 1 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Services\Dnscache\Parameters" /v DisableParallelAandAAAA /t REG_DWORD /d 1 /f
@@ -669,8 +692,6 @@ reg add "HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protoc
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Client" /v DisabledByDefault /t REG_DWORD /d 0 /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server" /v Enabled /t REG_DWORD /d 0xffffffff /f
 reg add "HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL\Protocols\TLS 1.2\Server" /v DisabledByDefault /t REG_DWORD /d 0 /f
-:: Encryption - Cipher Suites (order) - All cipher included to avoid application problems
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Cryptography\Configuration\SSL\00010002" /v Functions /t REG_SZ /d "TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256,TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA,TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA,TLS_RSA_WITH_AES_256_GCM_SHA384,TLS_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA256,TLS_RSA_WITH_AES_128_CBC_SHA256,TLS_RSA_WITH_AES_256_CBC_SHA,TLS_RSA_WITH_AES_128_CBC_SHA,TLS_AES_256_GCM_SHA384,TLS_AES_128_GCM_SHA256,TLS_DHE_RSA_WITH_AES_256_GCM_SHA384,TLS_DHE_RSA_WITH_AES_128_GCM_SHA256,TLS_RSA_WITH_3DES_EDE_CBC_SHA,TLS_RSA_WITH_NULL_SHA256,TLS_RSA_WITH_NULL_SHA,TLS_PSK_WITH_AES_256_GCM_SHA384,TLS_PSK_WITH_AES_128_GCM_SHA256,TLS_PSK_WITH_AES_256_CBC_SHA384,TLS_PSK_WITH_AES_128_CBC_SHA256,TLS_PSK_WITH_NULL_SHA384,TLS_PSK_WITH_NULL_SHA256" /f
 ::
 :: OCSP stapling - Enabling this registry key has a potential performance impact
 :: reg add "HKLM\SYSTEM\CurrentControlSet\Control\SecurityProviders\SCHANNEL" /v EnableOcspStaplingForSni /t REG_DWORD /d 1 /f
@@ -960,3 +981,37 @@ reg add "HKLM\Software\Policies\Google\Update" /v "AutoUpdateCheckPeriodMinutes"
 reg add "HKLM\Software\Policies\Google\Chrome\Recommended" /v "SafeBrowsingProtectionLevel" /t REG_DWORD /d "2" /f
 :: Enforce device driver signing
 BCDEDIT /set nointegritychecks OFF
+::
+:: FIREFOX HARDENING
+::
+:: 1. Enable Firefox's official telemetry and studies block
+reg add "HKLM\Software\Policies\Mozilla\Firefox" /v DisableTelemetry /t REG_DWORD /d 1 /f
+reg add "HKLM\Software\Policies\Mozilla\Firefox" /v DisableDefaultBrowserAgent /t REG_DWORD /d 1 /f
+:: 2. Enforce a strong password manager policy (disable built-in)
+reg add "HKLM\Software\Policies\Mozilla\Firefox\PasswordManager" /v Enabled /t REG_DWORD /d 0 /f
+:: 3. Disable insecure SSL/TLS versions and weak ciphers
+reg add "HKLM\Software\Policies\Mozilla\Firefox\SSL" /v VersionMin /t REG_SZ /d "tls1.2" /f
+:: 4. Force DNS-over-HTTPS (DoH) to a trusted provider (Cloudflare)
+reg add "HKLM\Software\Policies\Mozilla\Firefox\DNS" /v EnableDoH /t REG_DWORD /d 1 /f
+reg add "HKLM\Software\Policies\Mozilla\Firefox\DNS" /v ProviderURL /t REG_SZ /d "https://cloudflare-dns.com/dns-query" /f
+:: 5. Block dangerous web technologies (legacy Java plugins)
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Plugins" /v JavaPlugin /t REG_DWORD /d 2 /f
+:: 6. Set a default, secure search engine (DuckDuckGo)
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Search" /v Default /t REG_SZ /d "DuckDuckGo" /f
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Search" /v Order /t REG_SZ /d "DuckDuckGo" /f
+:: 7. Disable website notification prompts (a common annoyance/phishing vector)
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Notifications" /v Locked /t REG_DWORD /d 1 /f
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Notifications" /v Default /t REG_SZ /d "2" /f
+:: 8. Disable WebRTC to prevent local IP address leakage
+reg add "HKLM\Software\Policies\Mozilla\Firefox\WebRTC" /v EnableNonProxiedUDP /t REG_DWORD /d 0 /f
+:: 9. Set a strict tracking protection policy
+reg add "HKLM\Software\Policies\Mozilla\Firefox\TrackingProtection" /v Enabled /t REG_DWORD /d 1 /f
+reg add "HKLM\Software\Policies\Mozilla\Firefox\TrackingProtection" /v Locked /t REG_DWORD /d 1 /f
+:: 10. Block pop-up windows
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Popups" /v Allow /t REG_SZ /d "false" /f
+:: 11. Disable form autofill for privacy
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Autofill" /v CreditCardEnabled /t REG_DWORD /d 0 /f
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Autofill" /v AddressEnabled /t REG_DWORD /d 0 /f
+:: 12. Disable recommendations in the UI (Pocket, etc.)
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Preferences" /v browser.newtabpage.activity-stream.showSponsored /t REG_DWORD /d 0 /f
+reg add "HKLM\Software\Policies\Mozilla\Firefox\Preferences" /v extensions.pocket.enabled /t REG_DWORD /d 0 /f
